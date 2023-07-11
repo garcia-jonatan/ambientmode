@@ -1,0 +1,64 @@
+// ignore_for_file: unused_local_variable
+
+import 'package:flutter/material.dart';
+import 'package:wear/wear.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AmbientMode(
+      //  ´ROPORCIONA UNA INSTANCIA A TODAS LAS APPS
+      child: const MyHomePage(title: 'Flutter Demo'),
+
+      builder: (context, mode, child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            visualDensity: VisualDensity.compact,
+            colorScheme: mode == WearMode.active
+                ? const ColorScheme.dark(
+                    primary: Color(0xFF00B5FF),
+                  )
+                : const ColorScheme.dark(
+                    primary: Color.fromARGB(179, 144, 140, 140),
+                    onBackground: Color.fromARGB(168, 152, 144, 144),
+                    onSurface: Color.fromARGB(184, 174, 168, 168),
+                  ),
+          ),
+          home: child,
+        );
+      },
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(height: 10),
+          Text(
+            'Contador:',
+            style: TextStyle(
+                fontSize: 24,
+                color: Color.fromARGB(255, 0, 110, 255)), // TEXTO DEL CONTADOR
+          ),
+        ],
+      ),
+    );
+  }
+}
